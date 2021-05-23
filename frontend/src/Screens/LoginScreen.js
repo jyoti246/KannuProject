@@ -5,7 +5,8 @@ import {Header} from 'react-native-elements';
 
 import InputBar from '../Components/InputBar';
 import PasswordInput from '../Components/PasswordInput';
-const LoginScreen = () => {
+import { TouchableOpacity } from 'react-native';
+const LoginScreen = ({navigation}) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -20,17 +21,24 @@ const LoginScreen = () => {
       centerComponent={{ text: 'Rooster', style: { fontSize: 20, color: '#fff', fontWeight:'bold'} }}
     />
 
-    <Text category='h1' style={{textAlign: 'left', alignSelf: 'stretch',  marginVertical:25, marginLeft: 20}}> 
+    <Text category='h1' style={{textAlign: 'left', alignSelf: 'stretch',  marginTop:40, marginLeft: 20, flex:0.3}}> 
         Login
     </Text>
 
-    <InputBar label="username" text={username} onChangeText={onUsernameInput} />
+    <InputBar style={{flex:0.1}}label="username" text={username} onChangeText={onUsernameInput} />
 
-    <PasswordInput label="password" password={password} setPassword={setPassword} />
+    <PasswordInput style={{flex:0.1}} label="password" password={password} setPassword={setPassword} />
       
-    <Button style={styles.buttonStyle}>
+    <Button style={[styles.buttonStyle,]} onPress={()=>console.log('Hi')}>
       Continue
     </Button>
+
+    <TouchableOpacity style={{marginTop: 35, marginRight:25, marginLeft:'60%'}} onPress={()=>navigation.navigate('Register')}>
+      <Text category='s1' style={{textAlign: 'right', alignSelf: 'stretch'}}>{`New user?`}
+      </Text>
+      <Text category='h6' style={{textAlign: 'right', alignSelf: 'stretch', textDecorationLine:'underline'}}>{`Register`}
+      </Text>
+    </TouchableOpacity>
 
     </>
   );
@@ -48,10 +56,9 @@ const styles = StyleSheet.create({
     buttonStyle: {
       backgroundColor:'black',
       color:'white',
-      height: 50,
       borderRadius: 10,
       marginHorizontal: 25, 
-      marginTop: 5,
+      marginTop: 20,
     }
   });
 
