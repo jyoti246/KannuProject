@@ -1,21 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import App from './src/App';
 
-export default function App() {
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+
+export default function MainApp() {
   return (
-    <View style={styles.container}>
-    <Text>
-      Hi I'm First Screen
-    </Text>
-    </View>
+    <>
+      <IconRegistry icons={EvaIconsPack}/>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <App />
+      </ApplicationProvider>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
